@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MY PICK | 인스타 큐레이션 & 쇼핑커넥트</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Pretendard / Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            naver: {
+              DEFAULT: '#03C75A',
+              dark: '#02B150',
+            },
+            connect: {
+              DEFAULT: '#FF5B22',
+              dark: '#E44A14',
+              light: '#FFF3EE',
+            },
+            warm: {
+              50: '#FAF8F5',
+              100: '#F4EFEA',
+              200: '#E8DFD8',
+              800: '#2C2523',
+              900: '#1A1615',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+  <style>
+    /* 스크롤바 감추기 (부드러운 모바일 터치 스크롤 지원) */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* iOS 터치 부드러움 적용 */
+    body {
+      -webkit-tap-highlight-color: transparent;
+      background-color: #F7F5F0;
+    }
+    /* 섬세한 카드 쉐도우 */
+    .card-shadow {
+      box-shadow: 0 4px 20px -2px rgba(44, 37, 35, 0.06), 0 2px 6px -1px rgba(44, 37, 35, 0.04);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased text-warm-900 min-h-screen flex justify-center selection:bg-connect-light selection:text-connect">
+
+  <!-- 메인 모바일 컨테이너 (최대 480px, 인스타 인앱 브라우저 최적화) -->
+  <main class="w-full max-w-[480px] min-h-screen bg-warm-50 flex flex-col relative shadow-2xl border-x border-warm-200/50">
+
+    <!-- 최상단 헤더 바 (공유 및 링크 복사) -->
+    <header class="sticky top-0 z-40 bg-warm-50/90 backdrop-blur-md px-5 py-3.5 flex justify-between items-center border-b border-warm-200/60 transition-all">
+      <div class="flex items-center space-x-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-connect animate-pulse"></span>
+        <span class="text-xs font-semibold tracking-wider text-warm-800 uppercase">HAVEIEUM's selection</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button onclick="copyCurrentPageUrl()" class="w-8 h-8 rounded-full bg-white border border-warm-200 flex items-center justify-center text-warm-800 hover:bg-warm-100 transition shadow-sm" title="링크 공유">
+          <i class="fa-solid fa-arrow-up-from-bracket text-xs"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- 공정위 필수 표시 배너 (네이버 쇼핑커넥트 / 브랜드커넥트 법적 준수) -->
+    <section class="bg-amber-50/80 border-b border-amber-200/70 px-4 py-2 flex items-center justify-between text-[11px] text-amber-900">
+      <div class="flex items-center space-x-1.5 truncate">
+        <i class="fa-solid fa-circle-info text-amber-600 flex-shrink-0"></i>
+        <span class="truncate">네이버 쇼핑커넥트 제휴 활동으로 수수료를 제공받을 수 있습니다.</span>
+      </div>
+      <button onclick="this.parentElement.style.display='none'" class="text-amber-700/60 hover:text-amber-900 ml-2 font-bold px-1">✕</button>
+    </section>
+
+    <!-- 프로필 섹션 -->
+    <section class="px-5 pt-7 pb-4 text-center flex flex-col items-center">
+      <!-- 프로필 이미지 (아바타) -->
+      <div class="relative group">
+        <div class="w-24 h-24 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-400 via-rose-500 to-purple-600 shadow-md">
+          <img src="https://lh3.googleusercontent.com/d/1JP2bcrCqLNa17I9-LyVXkd3xWfcFRQH-" 
+               onerror="this.onerror=null; this.src='https://placehold.co/200x200/F4EFEA/FF5B22?text=PROFILE';"
+               alt="크리에이터 프로필" 
+               class="w-full h-full rounded-full object-cover border-2 border-white">
+        </div>
+        <span class="absolute bottom-0.5 right-0.5 bg-connect text-white p-1 rounded-full text-[10px] w-5 h-5 flex items-center justify-center border border-white" title="쇼핑커넥트 공식 파트너">
+          <i class="fa-solid fa-check"></i>
+        </span>
+      </div>
+
+      <!-- 닉네임 & 핸들 -->
+      <h1 class="mt-3.5 text-lg font-bold text-warm-900 flex items-center justify-center gap-1.5">
+        이음가짐의 꿀템 모음집
+      </h1>
+      <p class="text-xs text-warm-800/70 font-medium tracking-wide">@haveieum</p>
+
+      <!-- 소개글 (Bio) -->
+      <p class="mt-2.5 text-xs text-warm-800 leading-relaxed max-w-[340px] px-2 break-keep">
+        생활에 도움이 되는 정보와 함께 🌿<br>
+        쇼핑커넥트 속 아이템을 소개합니다.
+      </p>
+
+      <!-- SNS 바로가기 아이콘 링크 (네이버, 인스타그램, 유튜브) -->
+      <div class="mt-3.5 flex items-center justify-center space-x-3">
+        <!-- 네이버 (블로그/인플루언서 홈) -->
+        <a href="https://blog.naver.com" target="_blank" rel="noopener noreferrer" 
+           class="w-9 h-9 rounded-full bg-[#03C75A]/10 border border-[#03C75A]/25 flex items-center justify-center text-[#03C75A] hover:bg-[#03C75A] hover:text-white transition-all duration-200 transform hover:scale-110 active:scale-95 shadow-sm"
+           title="네이버 바로가기" aria-label="네이버">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/>
+          </svg>
+        </a>
+
+        <!-- 인스타그램 -->
+        <a href="https://www.instagram.com/haveieum" target="_blank" rel="noopener noreferrer" 
+           class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#FD1D1D]/10 via-[#E1306C]/10 to-[#833AB4]/10 border border-[#E1306C]/30 flex items-center justify-center text-[#E1306C] hover:bg-gradient-to-tr hover:from-[#FD1D1D] hover:via-[#E1306C] hover:to-[#833AB4] hover:text-white transition-all duration-200 transform hover:scale-110 active:scale-95 shadow-sm"
+           title="인스타그램 바로가기" aria-label="인스타그램">
+          <i class="fa-brands fa-instagram text-base"></i>
+        </a>
+
+        <!-- 유튜브 -->
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" 
+           class="w-9 h-9 rounded-full bg-[#FF0000]/10 border border-[#FF0000]/25 flex items-center justify-center text-[#FF0000] hover:bg-[#FF0000] hover:text-white transition-all duration-200 transform hover:scale-110 active:scale-95 shadow-sm"
+           title="유튜브 바로가기" aria-label="유튜브">
+          <i class="fa-brands fa-youtube text-base"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- 검색창 -->
+    <div class="px-5 my-2">
+      <div class="relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-warm-800/40 text-xs"></i>
+        <input type="text" id="searchInput" oninput="filterProducts()" placeholder="릴스/피드에서 본 아이템 검색..." 
+               class="w-full bg-white border border-warm-200/90 rounded-xl pl-9 pr-8 py-2.5 text-xs text-warm-900 placeholder-warm-800/40 focus:outline-none focus:border-connect focus:ring-1 focus:ring-connect shadow-sm">
+        <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-warm-800/40 hover:text-warm-900 text-xs">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 카테고리 필터 탭 (좌우 스크롤) -->
+    <section class="sticky top-[53px] z-30 bg-warm-50/95 backdrop-blur-md py-2 px-5 border-b border-warm-200/50">
+      <div class="flex space-x-2 overflow-x-auto no-scrollbar scroll-smooth py-0.5" id="categoryContainer">
+        <button onclick="setCategory('all')" class="category-btn active flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-warm-900 text-white shadow-sm">
+          전체 보기
+        </button>
+        <button onclick="setCategory('food')" class="category-btn flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm">
+          🍑 먹거리
+        </button>
+        <button onclick="setCategory('living')" class="category-btn flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm">
+          🍳 살림/키친
+        </button>
+        <button onclick="setCategory('tech')" class="category-btn flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm">
+          💻 데스크/테크
+        </button>
+       </div>
+    </section>
+
+    <!-- 상품 개수 및 정렬 상태 -->
+    <div class="px-5 pt-3 pb-1 flex justify-between items-center text-[11px] text-warm-800/60 font-medium">
+      <span id="productCount">등록된 아이템 6개</span>
+      <span class="flex items-center gap-1">
+        <i class="fa-solid fa-arrow-down-short-wide text-[10px]"></i> 최근 업로드 순
+      </span>
+    </div>
+
+    <!-- 상품 카드 리스트 영역 -->
+    <section class="px-5 py-3 flex-1 flex flex-col space-y-4" id="productList">
+      <!-- 자바스크립트로 렌더링 됩니다 -->
+    </section>
+
+    <!-- 검색 결과 없을 때 표시되는 빈 상태 -->
+    <div id="noResults" class="hidden py-16 px-5 text-center flex-col items-center justify-center">
+      <div class="w-14 h-14 rounded-full bg-warm-200/60 flex items-center justify-center text-warm-800/50 mb-3 text-xl">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <p class="text-xs font-semibold text-warm-800">검색된 제품이 없습니다</p>
+      <p class="text-[11px] text-warm-800/60 mt-1">다른 키워드로 검색하거나 필터를 초기화해 보세요.</p>
+      <button onclick="resetFilters()" class="mt-4 px-4 py-1.5 bg-warm-900 text-white rounded-full text-xs font-medium">
+        전체 보기로 돌아가기
+      </button>
+    </div>
+
+    <!-- 하단 푸터 및 법적 고지 -->
+    <footer class="mt-8 pt-6 pb-12 px-6 border-t border-warm-200/70 bg-white/60 text-center">
+      <div class="flex justify-center items-center gap-2 mb-2">
+        <span class="text-xs font-bold text-warm-800 tracking-wider">이음가짐의 꿀템 모음집</span>
+        <span class="text-[10px] px-1.5 py-0.5 rounded bg-connect-light text-connect font-bold">SHOPPING CONNECT</span>
+      </div>
+      
+      <p class="text-[10px] text-warm-800/60 leading-relaxed max-w-[360px] mx-auto break-keep">
+        본 페이지는 공정거래위원회의 심사지침에 따라 네이버 쇼핑커넥트 / 브랜드커넥트 활동으로 발생하는 추천 수익을 표기하고 있습니다. 상품 가격 및 재고는 판매처의 사정에 의해 변동될 수 있습니다.
+      </p>
+
+      <div class="mt-4 flex justify-center space-x-4 text-[11px] text-warm-800/50">
+        <button onclick="showModal('terms')" class="hover:underline">이용안내</button>
+        <span>•</span>
+        <button onclick="showModal('contact')" class="hover:underline">비즈니스 문의</button>
+      </div>
+
+      <p class="mt-4 text-[10px] text-warm-800/40">© 2026 HAVEIEUM. All rights reserved.</p>
+    </footer>
+
+    <!-- 복사 완료 토스트 알림 -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-warm-900/95 text-white text-xs px-4 py-2.5 rounded-full shadow-lg flex items-center space-x-2 pointer-events-none transition-all duration-300 opacity-0 translate-y-3 z-50">
+      <i class="fa-solid fa-check text-connect"></i>
+      <span id="toastMessage">링크가 복사되었습니다!</span>
+    </div>
+
+    <!-- 모달 팝업 레이어 (문의 & 안내) -->
+    <div id="infoModal" class="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm hidden items-center justify-center p-4">
+      <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl relative animate-in fade-in zoom-in duration-150">
+        <div class="flex justify-between items-center pb-3 border-b border-warm-200">
+          <h3 id="modalTitle" class="text-sm font-bold text-warm-900">안내</h3>
+          <button onclick="closeModal()" class="text-warm-800/60 hover:text-warm-900 text-sm">✕</button>
+        </div>
+        <div id="modalContent" class="py-4 text-xs text-warm-800 leading-relaxed break-keep">
+          <!-- 동적 모달 텍스트 -->
+        </div>
+        <button onclick="closeModal()" class="w-full py-2.5 bg-warm-900 text-white rounded-xl text-xs font-semibold hover:bg-black transition">
+          닫기
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 자바스크립트 로직 (데이터, 필터링, 검색, 복사 기능) -->
+  <script>
+    // 1. 쇼핑커넥트 연동 상품 데이터 리스트
+    // 실제 네이버 쇼핑커넥트 단축 URL과 해당 상품을 소개한 인스타 릴스 링크를 입력합니다.
+    const products = [
+      {
+        id: 1,
+        title: "제주 감귤 노지 귤 비가림 하우스 타이벡",
+        category: "food",
+        rating: "4.89",
+        reviews: "23,410",
+        price: "15,900",
+        originalPrice: "24,000",
+        discount: "33%",
+        comment: "새콤달콤 과즙 가득! 인스타 공구 요청 폭주했던 서귀포 산지직송 감귤이에요 🍊",
+        image: "https://images.unsplash.com/photo-1557800636-894a64c1696f?auto=format&fit=crop&w=600&q=80",
+        url: "https://naver.me/GqfmIEhV", // 쇼핑커넥트 링크
+        reelsUrl: "https://www.instagram.com/reels/", // 연결할 릴스 영상 링크
+        featured: true
+      },
+      {
+        id: 2,
+        title: "에브리윅 사각 밀폐 용기 플라스틱통 냉장고 정리 냉동실 수납 소분 파스타 보관 견과류",
+        category: "living",
+        rating: "4.92",
+        reviews: "4,821",
+        price: "19,800",
+        originalPrice: "32,000",
+        discount: "38%",
+        comment: "냉장고 문 열 때마다 기분 좋아지는 칼각 정리템! 냄새 배임 없고 적층 보관도 쉬워요 🧊",
+        image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=600&q=80",
+        url: "https://naver.me/I5wx6smG",
+        reelsUrl: "https://www.instagram.com/reels/",
+        featured: false
+      },
+    ];
+
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    // 2. 상품 렌더링 함수
+    function renderProducts() {
+      const container = document.getElementById('productList');
+      const noResults = document.getElementById('noResults');
+      const countLabel = document.getElementById('productCount');
+      
+      const filtered = products.filter(item => {
+        const matchesCategory = (currentCategory === 'all' || item.category === currentCategory);
+        const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                              item.comment.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      countLabel.textContent = `등록된 아이템 ${filtered.length}개`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        noResults.classList.remove('hidden');
+        noResults.classList.add('flex');
+        return;
+      }
+
+      noResults.classList.add('hidden');
+      noResults.classList.remove('flex');
+
+      container.innerHTML = filtered.map(item => `
+        <article class="bg-white rounded-2xl overflow-hidden border border-warm-200/80 card-shadow transition-transform active:scale-[0.99]">
+          <!-- 상품 이미지 (배지 없이 깔끔한 썸네일 노출) -->
+          <div class="relative w-full h-48 bg-warm-100 overflow-hidden">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy">
+
+            <!-- 개별 상품 링크 복사 버튼 -->
+            <button onclick="copyProductLink('${item.url}', event)" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md border border-warm-200 flex items-center justify-center text-warm-800 hover:bg-white transition shadow-sm active:scale-90" title="상품 링크 복사">
+              <i class="fa-regular fa-clone text-xs"></i>
+            </button>
+          </div>
+
+          <!-- 본문 내용 -->
+          <div class="p-4">
+            <!-- 별점 및 리뷰 -->
+            <div class="flex items-center space-x-1.5 text-xs text-warm-800/60 mb-1">
+              <div class="flex items-center text-amber-500 text-[11px]">
+                <i class="fa-solid fa-star"></i>
+                <span class="ml-1 font-bold text-warm-900">${item.rating}</span>
+              </div>
+              <span>•</span>
+              <span>리뷰 ${item.reviews}개</span>
+            </div>
+
+            <!-- 제목 -->
+            <h2 class="text-sm font-bold text-warm-900 leading-snug line-clamp-2">
+              ${item.title}
+            </h2>
+
+            <!-- 크리에이터 솔직 한줄평 말풍선 -->
+            <div class="mt-2.5 bg-warm-50 border border-warm-200/80 rounded-xl p-2.5 flex items-start space-x-2">
+              <span class="text-xs">💬</span>
+              <p class="text-[11.5px] text-warm-800 leading-relaxed font-normal">
+                ${item.comment}
+              </p>
+            </div>
+
+            <!-- 가격 정보 & 2버튼 액션 영역 -->
+            <div class="mt-4 pt-3 border-t border-warm-100">
+              <!-- 가격 정보 -->
+              <div class="flex items-baseline justify-between mb-3">
+                <span class="text-[11px] text-warm-800/40 line-through">${item.originalPrice}원</span>
+                <div class="flex items-baseline space-x-1">
+                  <span class="text-sm font-extrabold text-rose-500">${item.discount}</span>
+                  <span class="text-base font-extrabold text-warm-900">${item.price}</span>
+                  <span class="text-xs font-semibold text-warm-900">원</span>
+                </div>
+              </div>
+
+              <!-- 2단 그리드 버튼 (네이버 구매하기 & 릴스 다시보러가기) -->
+              <div class="grid grid-cols-2 gap-2">
+                <!-- 네이버 스마트스토어/쇼핑커넥트 연동 버튼 -->
+                <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
+                   class="py-2.5 px-2 rounded-xl bg-naver hover:bg-naver-dark active:scale-[0.98] text-white font-semibold text-xs flex items-center justify-center space-x-1 shadow-sm shadow-naver/20 transition">
+                  <span class="truncate">네이버에서 구매하기</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px] flex-shrink-0"></i>
+                </a>
+
+                <!-- 인스타그램 릴스 다시보러가기 버튼 (인스타 시그니처 그라데이션) -->
+                <a href="${item.reelsUrl || 'https://www.instagram.com'}" target="_blank" rel="noopener noreferrer"
+                   class="py-2.5 px-2 rounded-xl bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-95 active:scale-[0.98] text-white font-semibold text-xs flex items-center justify-center space-x-1.5 shadow-sm shadow-rose-500/20 transition">
+                  <i class="fa-brands fa-instagram text-xs flex-shrink-0"></i>
+                  <span class="truncate">릴스 다시보러가기</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // 3. 카테고리 전환 핸들러
+    function setCategory(category) {
+      currentCategory = category;
+      
+      const buttons = document.querySelectorAll('.category-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active', 'bg-warm-900', 'text-white');
+        btn.classList.add('bg-white', 'text-warm-800', 'border', 'border-warm-200/80');
+      });
+
+      // 클릭된 버튼 활성화 스타일 적용
+      event.currentTarget.classList.add('active', 'bg-warm-900', 'text-white');
+      event.currentTarget.classList.remove('bg-white', 'text-warm-800', 'border');
+
+      renderProducts();
+    }
+
+    // 4. 검색 필터 핸들러
+    function filterProducts() {
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      searchQuery = input.value.trim();
+
+      if (searchQuery.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      renderProducts();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      input.value = '';
+      searchQuery = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      renderProducts();
+    }
+
+    function resetFilters() {
+      clearSearch();
+      const allBtn = document.querySelector('.category-btn');
+      if (allBtn) {
+        allBtn.click();
+      }
+    }
+
+    // 5. 링크 복사 (인스타 인앱 브라우저 호환)
+    function copyTextToClipboard(text, successMsg) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(successMsg);
+        }).catch(() => {
+          fallbackCopy(text, successMsg);
+        });
+      } else {
+        fallbackCopy(text, successMsg);
+      }
+    }
+
+    function fallbackCopy(text, successMsg) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg);
+      } catch (err) {
+        showToast("링크 복사에 실패했습니다.");
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function copyCurrentPageUrl() {
+      copyTextToClipboard(window.location.href, "페이지 주소가 복사되었습니다 ✨");
+    }
+
+    function copyProductLink(url, event) {
+      if (event) event.stopPropagation();
+      copyTextToClipboard(url, "상품 바로가기 링크가 복사되었습니다!");
+    }
+
+    // 6. 토스트 알림 표시
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      
+      toast.classList.remove('opacity-0', 'translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-3');
+      }, 2300);
+    }
+
+    // 7. 모달 관리 (이용안내 / 제휴문의)
+    function showModal(type) {
+      const modal = document.getElementById('infoModal');
+      const title = document.getElementById('modalTitle');
+      const content = document.getElementById('modalContent');
+
+      if (type === 'terms') {
+        title.textContent = "쇼핑커넥트 이용안내";
+        content.innerHTML = `
+          <ul class="space-y-2 list-disc list-inside">
+            <li>본 페이지에 등록된 링크는 <strong>네이버 쇼핑커넥트(브랜드커넥트)</strong> 공식 제휴 제휴 링크입니다.</li>
+            <li>구매 시 발생하는 추가 비용은 일절 없으며, 판매 시 소정의 수수료를 지원받아 채널 유지에 사용됩니다.</li>
+            <li>배송, 교환, 환불 관련 문의는 연결된 네이버 스마트스토어/브랜드스토어 고객센터를 통해 진행해 주시기 바랍니다.</li>
+          </ul>
+        `;
+      } else if (type === 'contact') {
+        title.textContent = "협찬 및 비즈니스 문의";
+        content.innerHTML = `
+          <div class="space-y-2">
+            <p>제품 제안, 공동구매, 브랜디드 콘텐츠 협업 문의는 아래 이메일로 제안서를 보내주시면 확인 후 회신드립니다.</p>
+            <div class="p-2.5 bg-warm-100 rounded-lg text-center font-mono font-bold text-warm-900 mt-2 select-all">
+              s2hurthealer@naver.com
+            </div>
+          </div>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('infoModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // 초기 렌더링
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+    });
+  </script>
+</body>
+</html>
