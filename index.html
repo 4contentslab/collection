@@ -150,22 +150,22 @@
       </div>
     </div>
 
-    <!-- 카테고리 필터 탭 (좌우 스크롤) -->
+  <!-- 카테고리 필터 탭 (좌우 스크롤 대신 flex-wrap 적용) -->
     <section class="sticky top-[53px] z-30 bg-warm-50/95 backdrop-blur-md py-2 px-5 border-b border-warm-200/50">
-      <div class="flex space-x-2 overflow-x-auto no-scrollbar scroll-smooth py-0.5" id="categoryContainer">
-        <button onclick="setCategory('all')" class="category-btn active flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-warm-900 text-white shadow-sm">
+      <div class="flex flex-wrap gap-2 py-0.5 justify-center" id="categoryContainer">
+        <button onclick="setCategory('all')" class="category-btn active px-3 py-1.5 rounded-full text-xs font-semibold transition bg-warm-900 text-white shadow-sm flex-grow sm:flex-grow-0 text-center">
           전체 보기
         </button>
-        <button onclick="setCategory('food')" class="category-btn flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm">
+        <button onclick="setCategory('food')" class="category-btn px-3 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm flex-grow sm:flex-grow-0 text-center">
           🍑 먹거리
         </button>
-        <button onclick="setCategory('living')" class="category-btn flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm">
+        <button onclick="setCategory('living')" class="category-btn px-3 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm flex-grow sm:flex-grow-0 text-center">
           🍳 살림/키친
         </button>
-        <button onclick="setCategory('tech')" class="category-btn flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm">
+        <button onclick="setCategory('tech')" class="category-btn px-3 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm flex-grow sm:flex-grow-0 text-center">
           💻 데스크/테크
         </button>
-         <button onclick="setCategory('honey')" class="category-btn flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm">
+         <button onclick="setCategory('honey')" class="category-btn px-3 py-1.5 rounded-full text-xs font-medium text-warm-800 bg-white border border-warm-200/80 hover:bg-warm-100 transition shadow-sm flex-grow sm:flex-grow-0 text-center">
           🥞 꿀템들
         </button>
        </div>
